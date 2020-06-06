@@ -1,11 +1,15 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 
+
 import { AuthContext } from '../context';
 
 import { } from './styles';
 
 import firebase from 'firebase';
+import SyncStorage from 'sync-storage';
+
+
 
 
 export default SignIn = ({ navigation }) => {
@@ -24,6 +28,16 @@ export default SignIn = ({ navigation }) => {
 
   }
 
+
+  function setUserData() {
+    
+    SyncStorage.set('email', textEmail);
+    SyncStorage.set('firstAccess', false);
+
+
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.view_fields}>
@@ -37,8 +51,12 @@ export default SignIn = ({ navigation }) => {
           onChangeText={text => setTextPassword(text)}
           value={textPassword} secureTextEntry={true} />
       </View>
-      <Button title="Acessar" onPress={() => handleSignIn()} />
+      <Button title="Acessar" onPress={() => handleSignIn()
+        } />
+
       <Button title="Criar Conta" onPress={() => navigation.push("CreateAccount")} />
+
+
     </View>
   )
 }
@@ -71,3 +89,35 @@ const styles = StyleSheet.create({
   }
 });
 
+
+
+const dark_styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#251C1C",
+    color: "#F7F3F3"
+  },
+  button: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+    color: '#000000'
+  },
+  input_auth: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    flex: 1,
+    borderRadius: 3,
+    margin: 10,
+    marginTop: 0,
+    padding: 4
+  },
+  view_fields: {
+    flexDirection: 'column',
+    width: '100%',
+    height: 100
+  }
+});
