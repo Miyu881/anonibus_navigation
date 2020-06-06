@@ -23,7 +23,9 @@ export default Profile = () => {
 
   return (
     <View style={styles.container}>
-      <Text>PROFILE</Text>
+      <Text>SEU PERFIL</Text>
+  <Text>Email: {userMail}</Text>
+     {isFirstAccess && <Text>É bom conhece-lo :)</Text>}
       <Button title="Sair" onPress={() => handleSignOut()} />
     </View>
   )
